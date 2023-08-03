@@ -16,6 +16,9 @@ dependencies {
     api("com.mojang:brigadier:1.1.8")
 
     compileOnly("org.jetbrains:annotations:24.0.1")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
 }
 
 java {
@@ -33,6 +36,13 @@ tasks {
                 "--release", "20",
                 "--enable-preview"
         ))
+    }
+    build {
+        dependsOn(test)
+    }
+    test {
+        allJvmArgs = listOf("--enable-preview")
+        useJUnitPlatform()
     }
 }
 
