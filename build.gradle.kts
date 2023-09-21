@@ -17,13 +17,13 @@ dependencies {
 
     compileOnly("org.jetbrains:annotations:24.0.1")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(20))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 
     withSourcesJar()
@@ -31,17 +31,10 @@ java {
 }
 
 tasks {
-    compileJava {
-        options.compilerArgs.addAll(listOf(
-                "--release", "20",
-                "--enable-preview"
-        ))
-    }
     build {
         dependsOn(test)
     }
     test {
-        allJvmArgs = listOf("--enable-preview")
         useJUnitPlatform()
     }
 }
